@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.search {
+				right: 50px;
+				margin: 2px;
+			}
+			.box {
+				display: inline-block;
+					border: solid 2px;
+					height: 340px;
+					width: 300px;
+					left: 0px;
+					margin: 5px;
+					padding: 0px;
+			}
+			.inbox1 {
+				border: solid 1px;
+				margin: 1px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<label><i>Searchbox</i></label>
+		<input class="search" type="text" ng-model="searchBox"><br><br><br><br>
+		<div class="box" ng-repeat="txt in ctrl.tekst | filter: searchBox">
+			<label><b>Aanvraag</b></label><br>
+			<div class="inbox1">
+				{{txt.aanvraag}}
+			</div> <br>
+			<label><b>Levering</b></label>
+			<div class="inbox1">
+				{{txt.levering}}
+			</div>
+		</div>
+	</body>
+</html>

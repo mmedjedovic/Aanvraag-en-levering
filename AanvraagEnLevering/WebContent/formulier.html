@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style>
+			textarea {
+				border: solid 4px;
+				height: 100px;
+				width: 400px;
+				float: left;
+			}
+			button {
+				margin-left: 2px;' +
+			}
+			h3 {
+				text-align: left;
+			}
+			.publicatie {
+				background-color: green;
+				color: white;
+			}
+			.disabled {
+				background-color: grey;' +
+			}
+			textarea.ng-invalid {' +
+				background-color: lightgrey;' +
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<form name="myForm" ng-submit="ctrl.addTekstAanvraagEnLevering()">
+				<h3>Aanvraag</h3>
+				<button ng-click="ctrl.resetAanvraag()">x</button>
+				<textarea name="aanvraag" ng-model="ctrl.aanvraag" ng-maxlength="100" ng-minlength="3" required></textarea><br>
+				<span ng-show="myForm.aanvraag.$invalid && myForm.aanvraag.$dirty">Minimaal 3 en maximaal 100 letters</span>
+				<br><br><br><br><br>
+				<h3>Levering</h3>
+				<button ng-click="ctrl.resetLevering()">x</button>
+				<textarea name="levering" ng-model="ctrl.levering" ng-maxlength="100" ng-minlength="3" required></textarea><br>
+				<span ng-show="myForm.levering.$invalid && myForm.levering.$dirty" required>Minimaal 3 en maximaal 100 letters</span>
+				<br><br><br><br><br>
+				<input class="publicatie" type="submit" value="Publicatie" ng-disabled="myForm.$invalid" ng-class="{disabled: myForm.$invalid}"></input>
+			</form>
+		</div>
+	</body>
+</html>
