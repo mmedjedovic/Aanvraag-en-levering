@@ -24,8 +24,8 @@
 	</head>
 	<body>
 		<label><i>Searchbox</i></label>
-		<input class="search" type="text" ng-model="searchBox"><br><br><br><br>
-		<div class="box" ng-repeat="txt in ctrl.tekst | filter: searchBox">
+		<!-- <input class="search" type="text" ng-model="searchBox"><br><br><br><br>-->
+		<div class="box" ng-repeat="txt in ctrl.tekst track by $index">
 			<label><b>Aanvraag</b></label><br>
 			<div class="inbox1">
 				{{txt.aanvraag}}

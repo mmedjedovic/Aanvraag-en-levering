@@ -20,11 +20,18 @@ angular.module("myApp", ['ngRoute'])
 		self.levering = "";
 		self.addTekstAanvraagEnLevering = function() {	
 			var obj = {aanvraag: self.aanvraag, levering: self.levering};
-			ItemService.addText(obj);
+			
+			//in firebase-database data toevoegen
+			firebase.database().ref().push().set(obj);
+			
+			// in service object toevoegen
+			//ItemService.addText(obj);
+			
 			self.test = obj;
 			self.aanvraag = "";
 			self.levering = "";
-			$route.reload();
+			$route.reload();  
+			
 		}
 		self.resetAanvraag = function() {
 			self.aanvraag = "";
@@ -35,7 +42,19 @@ angular.module("myApp", ['ngRoute'])
 	}])
 	.controller("myCtrl2", ["ItemService", function(ItemService) {
 		var self = this;
-		self.tekst = ItemService.getList();
+		self.tekst = [];
+		var obj = {};
+		var index = 0;
+		console.log(self.tekst);
+		firebase.database().ref().on("value", function(snapshot) {
+				snapshot.forEach(function(child){
+					obj.aanvraag = child.val().aanvraag;
+					obj.levering = child.val().levering;
+					console.log(obj.aanvraag + " " + obj.levering);
+					self.tekst.push(obj);
+				})
+			})
+		//self.tekst = ItemService.getList();
 	}])
 	.factory("ItemService", [function() {
 		var list = [];
