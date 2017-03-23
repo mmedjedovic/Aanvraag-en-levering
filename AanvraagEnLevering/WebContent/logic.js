@@ -46,6 +46,8 @@ angular.module("myApp", ['ngRoute'])
 		var obj = {};
 		var index = 0;
 		console.log(self.tekst);
+		
+		//data lezen van database
 		firebase.database().ref().on("value", function(snapshot) {
 				snapshot.forEach(function(child){
 					obj.aanvraag = child.val().aanvraag;
